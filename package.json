@@ -1,0 +1,15 @@
+{
+  "name": "sticky-snippets",
+  "version": "1.0.0",
+  "description": "A CRUD-application that handles code snippets.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Effeboii/Sticky-Snippets.git"
+  },
+  "author": "Oscar Elf",
+  "license": "ISC"
+}
