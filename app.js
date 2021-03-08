@@ -14,7 +14,7 @@ const path = require('path');
 const logger = require('morgan');
 const helmet = require('helmet');
 const createError = require('http-errors');
-// const mongoose = require('./configs/mongoose.js');
+// const mongoose = require('./src/config/mongoose');
 require('dotenv').config();
 
 // Environment variables
@@ -27,10 +27,10 @@ const app = express();
 app.use(helmet());
 
 // Connect to the database
-mongoose.connect().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// mongoose.connect().catch((error) => {
+//   console.error(error);
+//   process.exit(1);
+// });
 
 // View engine setup
 app.engine(
@@ -53,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./src/routes/homeRouter'));
 app.use('*', (req, res, next) => next(createError(404)));
 
+// Error handler
 app.use((error, req, res, next) => {});
 
 // Start listening
