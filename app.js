@@ -47,7 +47,7 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 app.use(logger('dev')); // Request logger
 app.use(express.json()); // Parses JSON
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
