@@ -1,2 +1,2 @@
 # Sticky-Snippets
-✏ A CRUD-application that handles code snippets.
+A CRUD-application that handles code snippets.
