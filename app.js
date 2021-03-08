@@ -26,6 +26,12 @@ const app = express();
 // Helmet security
 app.use(helmet());
 
+// Connect to the database
+mongoose.connect().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
+
 // View engine setup
 app.engine(
   'hbs',
@@ -40,10 +46,14 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 // Additional middlewares
 app.use(logger('dev')); // Request logger
 app.use(express.json()); // Parses JSON
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
+app.use('*', (req, res, next) => next(createError(404)));
+
+app.use((error, req, res, next) => {});
 
 // Start listening
 app.listen(PORT, () => {
