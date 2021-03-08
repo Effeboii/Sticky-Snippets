@@ -37,3 +37,56 @@ const UserSchema = new mongoose.Schema(
     versionKey: false,
   }
 );
+
+// Salts and hashes password before save
+UserSchema.pre('save', async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+/**
+ * Authenticates a user
+ *
+ * @param {String} username - ...
+ * @param {String} password - ...
+ * @returns {Promise<User>} - The promise to be fulfilled
+ */
+UserSchema.statics.authenticate = async function (username, password) {
+  const user = await this.findOne({ username });
+
+  // If no user is found or the password is wrong, throw an error
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    throw new Error('Invalid username or password!.');
+  }
+
+  return user;
+};
+
+/**
+ * Gets a user by ID
+ *
+ * @param {string} id - The value of the id for the user to get
+ * @returns {Promise<User>} The Promise to be fulfilled
+ */
+schema.statics.getById = async function (id) {
+  return this.findOne({ _id: id });
+};
+
+/**
+ * Inserts a new user
+ *
+ * @param {object} userData - ...
+ * @param {string} userData.username - ...
+ * @param {string} userData.password - ...
+ * @returns {Promise<User>} - ...
+ */
+schema.statics.insert = async function (userData) {
+  const user = new User(userData);
+  return user.save();
+};
+
+// Creates a model using the schema
+const UserModel = mongoose.model('User', UserSchema);
+
+// Exports
+module.exports = UserModel;

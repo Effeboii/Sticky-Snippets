@@ -9,6 +9,25 @@ body {
   margin-bottom: 60px;
 }
 
+/* Custom page CSS
+=============================== */
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.card-text {
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
+}
+
 /* Footer
 =============================== */
 .footer {
