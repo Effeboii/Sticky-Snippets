@@ -3,9 +3,10 @@
 html {
   position: relative;
   min-height: 100%;
+  scroll-behavior: smooth;
 }
+
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
@@ -28,14 +29,16 @@ code {
   font-family: 'Consolas', 'Courier New', Courier, monospace;
 }
 
+/* Hero
+=============================== */
+
 /* Footer
 =============================== */
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;
   background-color: #f5f5f5;
 }

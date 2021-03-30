@@ -17,14 +17,11 @@ const createError = require('http-errors');
 // const mongoose = require('./src/config/mongoose');
 require('dotenv').config();
 
-// Environment variables
-const PORT = process.env.PORT || 3000;
-
 // Create express application
 const app = express();
 
 // Helmet security
-app.use(helmet());
+// app.use(helmet());
 
 // Connect to the database
 // mongoose.connect().catch((error) => {
@@ -43,20 +40,24 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Additional middlewares
 app.use(logger('dev')); // Request logger
 app.use(express.json()); // Parses JSON
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
+app.use('/accounts', require('./src/routes/accountRouter'));
 app.use('*', (req, res, next) => next(createError(404)));
 
 // Error handler
 app.use((error, req, res, next) => {});
 
 // Start listening
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);
   console.log('Press Ctrl-C to terminate...');
