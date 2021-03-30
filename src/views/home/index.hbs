@@ -1,3 +1,86 @@
-<div>
-  <p>Hello, World!</p>
+<div class="container col-xxl-8 px-4 py-2">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img
+        src="/images/hero-img.png"
+        class="d-block mx-lg-auto img-fluid"
+        alt="Hero Image"
+        width="700"
+        height="500"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Keep it simple, <br> keep it together</h1>
+      <p class="lead">
+        StickySnippets is here to help you to easier keep track of your favorite code snippets.
+        Make life easier by having all your code snippets in one place.
+      </p>
+      
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg px-4 me-md-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          Log in
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary btn-lg px-4">
+            Sign up
+          </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please enter your credentials</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="/login">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              class="form-control"
+              type="text"
+              name="username"
+              placeholder="username"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              class="form-control"
+              type="password"
+              name="password"
+              placeholder="●●●●●●●●"
+              required
+            />
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
