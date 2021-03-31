@@ -18,6 +18,10 @@ const User = require('../models/userModel');
  */
 accountController.register = async (req, res) => {
   try {
+    if (req.body.password !== req.body.passwordCheck) {
+      throw new Error('Password did not match.');
+    }
+
     await User.insert({
       username: req.body.username,
       password: req.body.password,
@@ -37,6 +41,8 @@ accountController.register = async (req, res) => {
       error = 'This username is already taken.';
     } else if (error.name === 'ValidationError') {
       error = 'Validation error, only certain characters allowed.';
+    } else if (error.message === 'Password did not match.') {
+      error = 'Password did not match.';
     }
 
     req.session.flash = {
