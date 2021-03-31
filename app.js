@@ -14,20 +14,33 @@ const path = require('path');
 const logger = require('morgan');
 const helmet = require('helmet');
 const createError = require('http-errors');
-// const mongoose = require('./src/config/mongoose');
+const mongoose = require('./src/config/mongoose');
 require('dotenv').config();
 
 // Create express application
 const app = express();
 
 // Helmet security
-// app.use(helmet());
+app.use(helmet());
+app.use(helmet.xssFilter());
+app.use(helmet.frameguard());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      imgSrc: ["'self'", 'cdn.jsdelivr.net'],
+      scriptSrc: ["'self'", 'cdn.jsdelivr.net'],
+      styleSrc: ["'self'", 'cdn.jsdelivr.net'],
+    },
+  })
+);
 
 // Connect to the database
-// mongoose.connect().catch((error) => {
-//   console.error(error);
-//   process.exit(1);
-// });
+mongoose.connect().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
 
 // View engine setup
 app.engine(

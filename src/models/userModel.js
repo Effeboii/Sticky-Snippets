@@ -68,7 +68,7 @@ UserSchema.statics.authenticate = async function (username, password) {
  * @param {string} id - The value of the id for the user to get
  * @returns {Promise<User>} The Promise to be fulfilled
  */
-schema.statics.getById = async function (id) {
+UserSchema.statics.getById = async function (id) {
   return this.findOne({ _id: id });
 };
 
@@ -80,8 +80,8 @@ schema.statics.getById = async function (id) {
  * @param {string} userData.password - ...
  * @returns {Promise<User>} - ...
  */
-schema.statics.insert = async function (userData) {
-  const user = new User(userData);
+UserSchema.statics.insert = async function (userData) {
+  const user = new UserModel(userData);
   return user.save();
 };
 
