@@ -11,6 +11,45 @@ const accountController = {};
 const User = require('../models/userModel');
 
 /**
+ * Register a user
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+accountController.register = async (req, res) => {
+  try {
+    await User.insert({
+      username: req.body.username,
+      password: req.body.password,
+    });
+
+    req.session.flash = {
+      type: 'success',
+      message: 'The user was registered and logged in successfully.',
+    };
+
+    req.session.isLoggedIn = true;
+    req.session.user = req.body.username;
+
+    res.redirect('/snippets');
+  } catch (error) {
+    if (error.code === 11000) {
+      error = 'This username is already taken.';
+    } else if (error.name === 'ValidationError') {
+      error = 'Validation error, only certain characters allowed.';
+    }
+
+    req.session.flash = {
+      type: 'danger',
+      message: 'Invalid register attempt.',
+      error: error,
+    };
+
+    res.redirect('/');
+  }
+};
+
+/**
  * Authenticates a user
  *
  * @param {Object} req - Express request object
@@ -18,7 +57,17 @@ const User = require('../models/userModel');
  */
 accountController.login = async (req, res) => {
   try {
-    res.render('/snippets');
+    await User.authenticate(req.body.username, req.body.password);
+
+    req.session.flash = {
+      type: 'success',
+      message: 'The user was logged in successfully.',
+    };
+
+    req.session.isLoggedIn = true;
+    req.session.user = req.body.username;
+
+    res.redirect('/snippets');
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',
@@ -29,39 +78,21 @@ accountController.login = async (req, res) => {
 };
 
 /**
- * Register a user
+ * Authenticates a user
  *
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-accountController.register = async (req, res) => {
+accountController.logout = async (req, res) => {
   try {
-    const user = await User.insert({
-      username: req.body.username,
-      password: req.body.password,
-    });
-
-    res.status(201).json({
-      status: '201: Created',
-      message: 'The user was succsessfully registered.',
-      id: user.id,
-    });
-
-    // res.render('home/index');
+    req.session.destroy();
+    res.redirect('/');
   } catch (error) {
-    if (error.name === 'ValidationError') {
-      res.status(400).json({
-        status: '400: Bad Request',
-        message: 'Sorry, something went wrong when trying to register a user.',
-        error: '' + error,
-      });
-    } else if (error.code === 11000) {
-      res.status(409).json({
-        status: '409: Conflict',
-        message: 'Sorry, something went wrong when trying to register a user.',
-        error: '' + error,
-      });
-    }
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
   }
 };
 

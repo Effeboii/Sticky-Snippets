@@ -29,12 +29,26 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       fontSrc: ["'self'"],
-      imgSrc: ["'self'", 'cdn.jsdelivr.net'],
+      imgSrc: ["'self'", 'getbootstrap.com'],
       scriptSrc: ["'self'", 'cdn.jsdelivr.net'],
       styleSrc: ["'self'", 'cdn.jsdelivr.net'],
     },
   })
 );
+
+// Setup session store with the given options.
+const sessionOptions = {
+  name: process.env.COOKIE_NAME,
+  secret: process.env.COOKIE_SECRET,
+  resave: false, // Resave even if a request is not changing the session.
+  saveUninitialized: false, // Don't save a created but not modified session.
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24, // 1 day
+    sameSite: 'lax', // Protect against csrf-attack
+    httpOnly: true, // Dont allow client script messing with the cookie
+  },
+};
+app.use(session(sessionOptions));
 
 // Connect to the database
 mongoose.connect().catch((error) => {
@@ -61,9 +75,27 @@ app.use(logger('dev')); // Request logger
 app.use(express.json()); // Parses JSON
 app.use(express.urlencoded({ extended: false }));
 
+// Middleware to be executed before the routes.
+app.use((req, res, next) => {
+  if (req.session.flash) {
+    res.locals.flash = req.session.flash;
+    delete req.session.flash;
+  }
+
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  }
+
+  if (req.session.isLoggedIn) {
+    res.locals.isLoggedIn = req.session.isLoggedIn;
+  }
+  next();
+});
+
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
 app.use('/accounts', require('./src/routes/accountRouter'));
+app.use('/snippets', require('./src/routes/snippetRouter'));
 app.use('*', (req, res, next) => next(createError(404)));
 
 // Error handler

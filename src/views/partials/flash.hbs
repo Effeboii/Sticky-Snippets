@@ -1,5 +1,6 @@
 {{#if flash}}
-<div class="flash {{flash.type}}">
+<div class="alert alert-{{flash.type}}" role="alert"">
   {{flash.message}}
+  {{flash.error}}
 </div>
 {{/if}}

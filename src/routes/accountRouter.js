@@ -12,6 +12,13 @@ const controller = require('../controllers/accountController');
 
 /**
  * @route   POST
+ * @desc    Register a new user
+ * @access  Public
+ */
+router.post('/register', controller.register);
+
+/**
+ * @route   POST
  * @desc    Login attempt of a registered user
  * @access  Public
  */
@@ -19,10 +26,10 @@ router.post('/login', controller.login);
 
 /**
  * @route   POST
- * @desc    Register a new user
+ * @desc    Login attempt of a registered user
  * @access  Public
  */
-router.post('/register', controller.register);
+router.get('/logout', controller.logout);
 
 // Exports
 module.exports = router;
