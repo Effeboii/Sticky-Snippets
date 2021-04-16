@@ -94,7 +94,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
-app.use('/accounts', require('./src/routes/accountRouter'));
+app.use('/user', require('./src/routes/userRouter'));
 app.use('/snippets', require('./src/routes/snippetRouter'));
 app.use('*', (req, res, next) => next(createError(404)));
 

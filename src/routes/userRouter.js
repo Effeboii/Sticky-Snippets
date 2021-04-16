@@ -8,7 +8,7 @@
 'use strict';
 
 const router = require('express').Router();
-const controller = require('../controllers/accountController');
+const controller = require('../controllers/userController');
 
 /**
  * @route   POST

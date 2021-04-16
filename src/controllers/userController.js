@@ -1,5 +1,5 @@
 /**
- * Module for the accountController
+ * Module for the userController
  *
  * @author Oscar Elf Svensson
  * @version 1.0.0
@@ -7,7 +7,7 @@
 
 'use strict';
 
-const accountController = {};
+const userController = {};
 const User = require('../models/userModel');
 
 /**
@@ -16,7 +16,7 @@ const User = require('../models/userModel');
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-accountController.register = async (req, res) => {
+userController.register = async (req, res) => {
   try {
     if (req.body.password !== req.body.passwordCheck) {
       throw new Error('Password did not match.');
@@ -61,7 +61,7 @@ accountController.register = async (req, res) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-accountController.login = async (req, res) => {
+userController.login = async (req, res) => {
   try {
     await User.authenticate(req.body.username, req.body.password);
 
@@ -89,7 +89,7 @@ accountController.login = async (req, res) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-accountController.logout = async (req, res) => {
+userController.logout = async (req, res) => {
   try {
     req.session.destroy();
     res.redirect('/');
@@ -103,4 +103,4 @@ accountController.logout = async (req, res) => {
 };
 
 // Exports
-module.exports = accountController;
+module.exports = userController;

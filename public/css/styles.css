@@ -1,11 +1,36 @@
 /* Main
 =============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html {
+  font-size: 14px;
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif;
+  position: relative;
+}
+
+/* Header
+=============================== */
+.header {
+  height: 10vh;
 }
 
 /* Hero
 =============================== */
+.container {
+  height: 80vh;
+}
 
 /* Footer
 =============================== */
+.footer {
+  height: 10vh;
+}
