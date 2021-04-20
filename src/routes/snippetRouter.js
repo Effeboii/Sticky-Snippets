@@ -17,5 +17,8 @@ const controller = require('../controllers/snippetController');
  */
 router.get('/', controller.read);
 
+router.get('/new', controller.new);
+router.post('/create', controller.create);
+
 // Exports
 module.exports = router;

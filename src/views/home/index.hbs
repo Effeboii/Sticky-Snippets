@@ -52,7 +52,7 @@
       </div>
 
       <div class="modal-body">
-        <form method="POST" action="/user/login">
+        <form method="POST" action="/users/login">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input
@@ -60,6 +60,7 @@
               type="text"
               name="username"
               placeholder="username"
+              minlength="6"
               required
             />
           </div>
@@ -71,6 +72,7 @@
               type="password"
               name="password"
               placeholder="●●●●●●●●"
+              minlength="8"
               required
             />
           </div>
@@ -97,7 +99,7 @@
       </div>
 
       <div class="modal-body">
-        <form method="POST" action="/user/register">
+        <form method="POST" action="/users/register">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input

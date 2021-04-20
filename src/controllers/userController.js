@@ -75,11 +75,12 @@ userController.login = async (req, res) => {
 
     res.redirect('/snippets');
   } catch (error) {
-    res.status(500).json({
-      status: '500: Internal Server Error',
-      msg: 'Sorry, something went wrong.',
-      error: 'Error: ' + error,
-    });
+    req.session.flash = {
+      type: 'danger',
+      message: 'Invalid login attempt.',
+    };
+
+    res.redirect('/');
   }
 };
 

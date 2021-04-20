@@ -25,8 +25,8 @@ router.post('/register', controller.register);
 router.post('/login', controller.login);
 
 /**
- * @route   POST
- * @desc    Login attempt of a registered user
+ * @route   GET
+ * @desc    Logout a registered user
  * @access  Public
  */
 router.get('/logout', controller.logout);

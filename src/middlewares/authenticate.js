@@ -35,5 +35,13 @@ authenticate.user = async (req, res, next) => {
   // }
 };
 
+authenticate.isLoggedIn = async (req, res, next) => {
+  if (!req.session.isLoggedIn) {
+    return res.status(401).render();
+  }
+
+  next();
+};
+
 // Exports
 module.exports = authenticate;

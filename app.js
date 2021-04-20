@@ -94,12 +94,14 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', require('./src/routes/homeRouter'));
-app.use('/user', require('./src/routes/userRouter'));
+app.use('/users', require('./src/routes/userRouter'));
 app.use('/snippets', require('./src/routes/snippetRouter'));
 app.use('*', (req, res, next) => next(createError(404)));
 
 // Error handler
-app.use((error, req, res, next) => {});
+app.use((error, req, res, next) => {
+  res.status(error.status).render('errors/error', { error });
+});
 
 // Start listening
 const PORT = process.env.PORT || 3000;
