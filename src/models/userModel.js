@@ -65,11 +65,17 @@ UserSchema.statics.authenticate = async function (username, password) {
 /**
  * Gets a user by ID
  *
- * @param {string} id - The value of the id for the user to get
+ * @param {string} username - The value of the username for the user to get
  * @returns {Promise<User>} The Promise to be fulfilled
  */
-UserSchema.statics.getById = async function (id) {
-  return this.findOne({ _id: id });
+UserSchema.statics.getById = async function (username) {
+  const user = await this.findOne({ username });
+
+  if (!user) {
+    throw new Error('');
+  }
+
+  return user._id;
 };
 
 /**

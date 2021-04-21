@@ -9,7 +9,7 @@
 
 const snippetController = {};
 const Snippet = require('../models/snippetModel');
-const UserModel = require('../models/userModel');
+const User = require('../models/userModel');
 
 /**
  * Displays the start page
@@ -55,8 +55,10 @@ snippetController.new = async (req, res) => {
  */
 snippetController.create = async (req, res) => {
   try {
+    console.log(req.session.user);
+
     await Snippet.insert({
-      user_id: await UserModel.getId(req.session.user),
+      user_id: await User.getById(req.session.user),
       username: req.session.user,
       name: req.body.name,
       description: req.body.description,
@@ -66,16 +68,16 @@ snippetController.create = async (req, res) => {
 
     req.session.flash = {
       type: 'success',
-      message: 'The user was registered and logged in successfully.',
+      message: 'Snippet successfully added!',
     };
 
     res.redirect('/snippets');
   } catch (error) {
-    res.status(500).json({
-      status: '500: Internal Server Error',
-      msg: 'Sorry, something went wrong.',
-      error: 'Error: ' + error,
-    });
+    req.session.flash = {
+      type: 'danger',
+      message: 'Something went wrong. ' + error.message,
+    };
+    res.redirect('/snippets/new');
   }
 };
 
