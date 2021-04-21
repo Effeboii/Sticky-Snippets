@@ -46,7 +46,6 @@ const SnippetSchema = new mongoose.Schema(
       required: [true, 'Snippet tag is required.'],
       maxlength: [100, 'No more than 100 characters allowed.'],
       enum: ['txt', 'html', 'css', 'javascript', 'php', 'C#'],
-      default: 'txt',
     },
   },
   {

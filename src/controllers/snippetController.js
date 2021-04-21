@@ -19,7 +19,20 @@ const User = require('../models/userModel');
  */
 snippetController.read = async (req, res) => {
   try {
-    res.render('snippets/index');
+    const viewData = {
+      snippets: (await Snippet.find({})).map((snippet) => ({
+        id: snippet._id,
+        tag: snippet.tag,
+        name: snippet.name,
+        description: snippet.description,
+        code: snippet.code,
+        author: snippet.username,
+      })),
+    };
+
+    console.log(viewData, 'hejwhej');
+
+    res.render('snippets/index', { viewData });
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',
@@ -55,8 +68,6 @@ snippetController.new = async (req, res) => {
  */
 snippetController.create = async (req, res) => {
   try {
-    console.log(req.session.user);
-
     await Snippet.insert({
       user_id: await User.getById(req.session.user),
       username: req.session.user,

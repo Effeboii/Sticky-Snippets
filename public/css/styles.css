@@ -34,6 +34,17 @@ textarea {
   height: 80vh;
 }
 
+.card-container {
+  background-color: blue;
+  height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.card {
+  background-color: red;
+}
+
 /* Footer
 =============================== */
 .footer {

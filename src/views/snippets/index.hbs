@@ -1,4 +1,4 @@
-<h1><span class="fa fa-cogs"></span> Snippets</h1>
+{{!-- <h1><span class="fa fa-cogs"></span> Snippets</h1>
 
 <table class="table table-hover">
 
@@ -11,5 +11,58 @@
       <th scope="col">Delete</th>
     </tr>
   </thead>
+
+  <tbody>
+  {{#each viewData.snippets}}
+    <tr>
+      <td><a>{{this.name}}</a></td>
+      <td><a>{{this.author}}</a></td>
+      <td><a>{{this.tag}}</a></td>
+      <td><a>Edit</a></td>
+      <td><a>Delete</a></td>
+    </tr>
+
+  {{/each}}
+  </tbody>
   
-</table>
+</table> --}}
+
+{{!-- <h1><span class="fa fa-cogs"></span> Snippets</h1>
+
+<div class="card-container">
+  <div class="row">
+
+    {{#each viewData.snippets}}
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text">{{this.description}}</p>
+          <p class="card-text">{{this.tag}}</p>
+          <a href="#" class="btn btn-primary">View snippet</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+  </div>
+</div> --}}
+
+<h1><span class="fa fa-cogs"></span> Snippets</h1>
+
+<div class="card-container">
+  <div class="row row-cols-3">
+    {{#each viewData.snippets}}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{this.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{this.tag}}</h6>
+        <p class="card-text">{{this.description}}</p>
+        <a href="#" class="card-link">Show snippet</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
