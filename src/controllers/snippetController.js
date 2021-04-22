@@ -26,13 +26,41 @@ snippetController.read = async (req, res) => {
         name: snippet.name,
         description: snippet.description,
         code: snippet.code,
+        date: snippet.createdAt,
         author: snippet.username,
       })),
     };
 
-    console.log(viewData, 'hejwhej');
-
     res.render('snippets/index', { viewData });
+  } catch (error) {
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
+  }
+};
+
+/**
+ * Displays the start page
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+snippetController.single = async (req, res) => {
+  try {
+    const viewData = {
+      snippet: await Snippet.findOne({ _id: req.params.id }).lean(),
+      owner: false,
+    };
+
+    if (viewData.snippet.username === req.session.user) {
+      viewData.owner = true;
+    }
+
+    console.log(viewData.owner);
+
+    res.render('snippets/view', { viewData });
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',

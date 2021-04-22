@@ -27,29 +27,6 @@
   
 </table> --}}
 
-{{!-- <h1><span class="fa fa-cogs"></span> Snippets</h1>
-
-<div class="card-container">
-  <div class="row">
-
-    {{#each viewData.snippets}}
-
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-          <h5 class="card-title">{{this.name}}</h5>
-          <p class="card-text">{{this.description}}</p>
-          <p class="card-text">{{this.tag}}</p>
-          <a href="#" class="btn btn-primary">View snippet</a>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-
-  </div>
-</div> --}}
-
 <h1><span class="fa fa-cogs"></span> Snippets</h1>
 
 <div class="card-container">
@@ -60,7 +37,8 @@
         <h5 class="card-title">{{this.name}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{this.tag}}</h6>
         <p class="card-text">{{this.description}}</p>
-        <a href="#" class="card-link">Show snippet</a>
+        <p class="card-text">{{this.date}}</p>
+        <a href="snippets/{{this.id}}" class="card-link">View more</a>
       </div>
     </div>
     {{/each}}
