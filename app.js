@@ -15,6 +15,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const createError = require('http-errors');
 const mongoose = require('./src/config/mongoose');
+const moment = require('moment');
 require('dotenv').config();
 
 // Create express application
@@ -28,10 +29,10 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      fontSrc: ["'self'"],
+      fontSrc: ["'self'", 'fonts.gstatic.com'],
       imgSrc: ["'self'", 'getbootstrap.com'],
       scriptSrc: ["'self'", 'cdn.jsdelivr.net'],
-      styleSrc: ["'self'", 'cdn.jsdelivr.net'],
+      styleSrc: ["'self'", 'cdn.jsdelivr.net', 'fonts.googleapis.com'],
     },
   })
 );
@@ -93,7 +94,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/', require('./src/routes/homeRouter'));
+app.use('/', require('./src/routes/root'));
 app.use('/users', require('./src/routes/userRouter'));
 app.use('/snippets', require('./src/routes/snippetRouter'));
 app.use('*', (req, res, next) => next(createError(404)));

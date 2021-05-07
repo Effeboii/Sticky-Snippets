@@ -85,7 +85,7 @@ userController.login = async (req, res) => {
 };
 
 /**
- * Authenticates a user
+ * Destroys a users session
  *
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object

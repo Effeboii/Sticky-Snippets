@@ -1,5 +1,5 @@
 /**
- * Module for the homeController
+ * Module for the root
  *
  * @author Oscar Elf Svensson
  * @version 1.0.0
@@ -7,15 +7,14 @@
 
 'use strict';
 
-const homeController = {};
+const router = require('express').Router();
 
 /**
- * Displays the start page
- *
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
+ * @route   GET
+ * @desc    Home
+ * @access  Public
  */
-homeController.home = async (req, res) => {
+router.get('/', (req, res) => {
   try {
     res.render('home/index');
   } catch (error) {
@@ -25,7 +24,7 @@ homeController.home = async (req, res) => {
       error: 'Error: ' + error,
     });
   }
-};
+});
 
 // Exports
-module.exports = homeController;
+module.exports = router;

@@ -8,6 +8,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 // Create a schema
 const SnippetSchema = new mongoose.Schema(
@@ -45,7 +46,13 @@ const SnippetSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Snippet tag is required.'],
       maxlength: [100, 'No more than 100 characters allowed.'],
-      enum: ['txt', 'html', 'css', 'javascript', 'php', 'C#'],
+      enum: ['txt', 'html', 'css', 'js', 'php', 'c#'],
+    },
+    createdAt: {
+      type: String,
+      required: true,
+      default: moment().format('ll HH:mm'),
+      maxlength: 100,
     },
   },
   {

@@ -1,5 +1,5 @@
 /**
- * Module for the accountRouter
+ * Module for the userRouter
  *
  * @author Oscar Elf Svensson
  * @version 1.0.0

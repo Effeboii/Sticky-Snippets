@@ -1,42 +1,95 @@
-{{!-- <h1>
-  <span class="fa fa-cog"></span> Snippet details</h1>
+<div class="snippets">
 
-<table class="table table-hover">
+  <div class="snippets-header">
+    <h2>Services</h2>
+    <p>Veritatis et dolores facere numquam et praesentium</p>
+  </div>
 
-  <dl class="row">
-    <dt class="col-sm-2">Name: {{viewData.snippet.name}}</dt>
-    <dd class="col-sm-10"></dd>
-    <p>{{viewData.snippet.name}}</p>
+  <div class="form-container">
 
-    <dt class="col-sm-2">Code</dt>
-    <textarea class="form-control" name="snippetCode" rows="15" readonly>{{viewData.snippet.code}}</textarea>
-  </dl>
+  <form class="row g-3" method="POST" action="/snippets/create">
+    <div class="col-md-6">
+      <label for="name" class="form-label">Name</label>
+      <input
+        class="form-control"
+        type="text"
+        name="name"
+        value={{viewData.snippet.name}}
+        placeholder="The name of the snippet..."
+        minlength="1"
+        required
+      >
+    </div>
 
-</table> --}}
+    <div class="col-md-6">
+      <label for="description" class="form-label">Write a short description</label>
+      <input
+        class="form-control"
+        type="text"
+        name="description"
+        value={{viewData.snippet.description}}
+        placeholder="What's your snippet about?"
+        minlength="1"
+        required
+      >
+    </div>
 
-<div class="feature col-md-4">
-  <h2>Name: {{viewData.snippet.name}}</h2>
-  <p>Description: {{viewData.snippet.description}}</p>
-  <p>Tag: {{viewData.snippet.tag}}</p>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Write your snippet</label>
+      <textarea
+        class="form-control"
+        name="code"
+        placeholder="Write your snippet here..."
+        rows="20"
+        required>{{viewData.snippet.code}}</textarea>
+    </div>
+
+    <p>Tag: {{viewData.snippet.tag}}</p>
+
+    <div class="form-check ps-2 mt-0">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio1" value="txt" required>
+        <label class="form-check-label" for="inlineRadio1">.txt</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="html">
+        <label class="form-check-label" for="inlineRadio2">.html</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="css">
+        <label class="form-check-label" for="inlineRadio2">.css</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="js">
+        <label class="form-check-label" for="inlineRadio2">.js</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="php">
+        <label class="form-check-label" for="inlineRadio2">.php</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="c#">
+        <label class="form-check-label" for="inlineRadio2">.cs</label>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-auto ps-2">
+        <button type="submit" class="btn btn-primary">Edit snippet</button>
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Delete snippet</button>
+      </div>
+
+    </div>
+
+  </form>
+
 </div>
 
-  <dl class="row">
-    <textarea class="form-control" name="snippetCode" rows="15" readonly>{{viewData.snippet.code}}</textarea>
-  </dl>
-
-
-{{!-- <div class="container py-5" id="featured-3">
-  <h2 class="pb-2 border-bottom">Columns with icons</h2>
-  <div class="row g-5 py-5">
-    <div class="feature col-md-4">
-      <div class="feature-icon bg-primary bg-gradient">
-        <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
-      </div>
-      <h2>Featured title</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-      <a href="#" class="icon-link">
-        Call to action
-        <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-      </a>
-    </div>
-</div> --}}

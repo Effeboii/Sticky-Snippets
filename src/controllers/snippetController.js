@@ -10,6 +10,7 @@
 const snippetController = {};
 const Snippet = require('../models/snippetModel');
 const User = require('../models/userModel');
+const moment = require('moment');
 
 /**
  * Displays the start page
@@ -32,35 +33,6 @@ snippetController.read = async (req, res) => {
     };
 
     res.render('snippets/index', { viewData });
-  } catch (error) {
-    res.status(500).json({
-      status: '500: Internal Server Error',
-      msg: 'Sorry, something went wrong.',
-      error: 'Error: ' + error,
-    });
-  }
-};
-
-/**
- * Displays the start page
- *
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- */
-snippetController.single = async (req, res) => {
-  try {
-    const viewData = {
-      snippet: await Snippet.findOne({ _id: req.params.id }).lean(),
-      owner: false,
-    };
-
-    if (viewData.snippet.username === req.session.user) {
-      viewData.owner = true;
-    }
-
-    console.log(viewData.owner);
-
-    res.render('snippets/view', { viewData });
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',
@@ -117,6 +89,58 @@ snippetController.create = async (req, res) => {
       message: 'Something went wrong. ' + error.message,
     };
     res.redirect('/snippets/new');
+  }
+};
+
+/**
+ * Displays the start page
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+snippetController.single = async (req, res) => {
+  try {
+    const viewData = {
+      snippet: await Snippet.findOne({ _id: req.params.id }).lean(),
+      owner: false,
+    };
+
+    if (viewData.snippet.username === req.session.user) {
+      viewData.owner = true;
+    }
+
+    res.render('snippets/view', { viewData });
+  } catch (error) {
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
+  }
+};
+
+/**
+ * Displays the start page
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+snippetController.delete = async (req, res) => {
+  try {
+    await Snippet.deleteOne({ _id: req.params.id });
+
+    req.session.flash = {
+      type: 'success',
+      message: 'Snippet successfully deleted!',
+    };
+
+    res.render('snippets');
+  } catch (error) {
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
   }
 };
 

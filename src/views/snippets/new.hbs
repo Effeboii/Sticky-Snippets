@@ -1,8 +1,13 @@
-<h1>
-  <span class="far fa-plus-square"></span> New Snippet
-</h1>
+<div class="snippets">
 
-<form class="row g-3" method="POST" action="/snippets/create">
+  <div class="snippets-header">
+    <h2>Services</h2>
+    <p>Veritatis et dolores facere numquam et praesentium</p>
+  </div>
+
+  <div class="form-container">
+
+  <form class="row g-3" method="POST" action="/snippets/create">
   <div class="col-md-6">
     <label for="name" class="form-label">Name</label>
     <input
@@ -33,12 +38,12 @@
       class="form-control"
       name="code"
       placeholder="Write your snippet here..."
-      rows="10"
+      rows="20"
       required
     ></textarea>
   </div>
 
-  <div class="form-check">
+  <div class="form-check ps-2">
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="tag" id="inlineRadio1" value="txt" required>
       <label class="form-check-label" for="inlineRadio1">.txt</label>
@@ -65,12 +70,16 @@
     </div>
 
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="cs">
+      <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="c#">
       <label class="form-check-label" for="inlineRadio2">.cs</label>
     </div>
   </div>
 
-  <div class="col-12">
+  <div class="col-12 ps-2">
     <button type="submit" class="btn btn-primary">Create snippet</button>
   </div>
 </form>
+
+</div>
+
+</div>
