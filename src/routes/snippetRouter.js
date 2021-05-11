@@ -23,9 +23,11 @@ router.post('/create', controller.create);
 
 router.get('/:id', controller.single);
 
-router.get('/delete/:id', controller.delete);
+router.post('/delete/:id', controller.delete);
 
-router.get('/edit/:id', controller.update);
+router.get('/edit/:id', controller.edit);
+
+router.get('/update/:id', controller.update);
 
 // Exports
 module.exports = router;

@@ -14,6 +14,7 @@
           class='form-control'
           type='text'
           name='name'
+          value='{{viewData.snippet.name}}'
           placeholder='The name of the snippet...'
           minlength='1'
           required
@@ -26,6 +27,7 @@
           class='form-control'
           type='text'
           name='description'
+          value='{{viewData.snippet.description}}'
           placeholder="What's your snippet about?"
           minlength='1'
           required
@@ -40,8 +42,10 @@
           placeholder='Write your snippet here...'
           rows='20'
           required
-        ></textarea>
+        >{{viewData.snippet.code}}</textarea>
       </div>
+
+      <p>Tag: {{viewData.snippet.tag}}</p>
 
       <div class='form-check ps-2'>
         <div class='form-check form-check-inline'>
@@ -113,10 +117,9 @@
       </div>
 
       <div class='col-12 ps-2'>
-        <button type='submit' class='btn btn-primary'>Create snippet</button>
+        <button type='submit' class='btn btn-primary'>Edit snippet</button>
       </div>
+
     </form>
-
   </div>
-
 </div>

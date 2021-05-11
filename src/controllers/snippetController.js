@@ -150,14 +150,51 @@ snippetController.delete = async (req, res) => {
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-snippetController.update = async (req, res) => {
+snippetController.edit = async (req, res) => {
   try {
-    req.session.flash = {
-      type: 'success',
-      message: 'Snippet successfully deleted!',
+    const viewData = {
+      snippet: await Snippet.findOne({ _id: req.params.id }).lean(),
+      owner: false,
     };
 
-    res.redirect('/snippets');
+    if (viewData.snippet.username === req.session.user) {
+      viewData.owner = true;
+    }
+
+    res.render('snippets/edit', { viewData });
+  } catch (error) {
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
+  }
+};
+
+/**
+ * Displays the start page
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+snippetController.update = async (req, res) => {
+  try {
+    console.log('hej');
+
+    // const update = {
+    //   name: req.body.name,
+    //   description: req.body.description,
+    //   code: req.body.code,
+    //   tag: req.body.tag,
+    // };
+
+    // await Snippet.findByIdAndUpdate(
+    //   req.params.id,
+    //   { $set: update },
+    //   { new: true }
+    // );
+
+    // res.redirect('/snippets');
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',
