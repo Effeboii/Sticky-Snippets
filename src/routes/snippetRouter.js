@@ -9,13 +9,14 @@
 
 const router = require('express').Router();
 const controller = require('../controllers/snippetController');
+const verify = require('../middlewares/verify');
 
 /**
  * @route   GET
  * @desc    Home
  * @access  Public
  */
-router.get('/', controller.read);
+router.get('/', verify.user, controller.read);
 
 router.get('/new', controller.new);
 

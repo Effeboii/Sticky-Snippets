@@ -101,7 +101,25 @@ app.use('*', (req, res, next) => next(createError(404)));
 
 // Error handler
 app.use((error, req, res, next) => {
-  res.status(error.status).render('errors/error', { error });
+  // 401 Unauthorized
+  if (error.status === 401) {
+    return res.status(401).render('errors/401', { error });
+  }
+
+  // 403 Forbidden
+  if (error.status === 403) {
+    return res.status(403).render('errors/403', { error });
+  }
+
+  // 404 Not Found
+  if (error.status === 404) {
+    return res.status(404).render('errors/404', { error });
+  }
+
+  // 500 Internal Server Error
+  if (error.status === 500) {
+    return res.status(500).render('errors/500', { error });
+  }
 });
 
 // Start listening

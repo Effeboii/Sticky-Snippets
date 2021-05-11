@@ -178,3 +178,10 @@ textarea {
   margin: auto;
   margin-top: 40px;
 }
+
+/* Errors
+=============================== */
+.error {
+  height: 92vh;
+  width: 100%;
+}
