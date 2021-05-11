@@ -179,22 +179,25 @@ snippetController.edit = async (req, res) => {
  */
 snippetController.update = async (req, res) => {
   try {
-    console.log('hej');
+    const update = {
+      name: req.body.name,
+      description: req.body.description,
+      code: req.body.code,
+      tag: req.body.tag,
+    };
 
-    // const update = {
-    //   name: req.body.name,
-    //   description: req.body.description,
-    //   code: req.body.code,
-    //   tag: req.body.tag,
-    // };
+    await Snippet.findByIdAndUpdate(
+      req.params.id,
+      { $set: update },
+      { new: true }
+    );
 
-    // await Snippet.findByIdAndUpdate(
-    //   req.params.id,
-    //   { $set: update },
-    //   { new: true }
-    // );
+    req.session.flash = {
+      type: 'success',
+      message: 'Snippet successfully updated!',
+    };
 
-    // res.redirect('/snippets');
+    res.redirect('/snippets');
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',
