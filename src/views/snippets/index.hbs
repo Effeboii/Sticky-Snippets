@@ -1,27 +1,35 @@
-<div class="snippets">
+<div class='snippets'>
 
-  <div class="snippets-header">
-    <h2>Services</h2>
-    <p>Veritatis et dolores facere numquam et praesentium</p>
+  <div class='snippets-header'>
+    <h2>Snippets</h2>
+    <p>This is a list of all the current snippets</p>
   </div>
 
-  <div class="card-wrapper">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      
-      {{#each viewData.snippets}}
-        <div class="col">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">{{this.name}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{this.tag}}</h6>
-              <p class="card-text">{{this.description}}</p>
-              <p class="card-text">{{this.date}}</p>
-              <p class="card-text">Created by: {{this.author}}</p>
-              <a href="snippets/{{this.id}}" class="card-link">View more</a>
+  <div class='card-wrapper'>
+    <div class='row row-cols-1 row-cols-md-3 g-4'>
+
+      {{#if viewData.snippets.length}}
+        {{#each viewData.snippets}}
+          <div class='col'>
+            <div class='card h-100'>
+              <div class='card-body'>
+                <h5 class='card-title'>{{this.name}}</h5>
+                <h6 class='card-subtitle mb-2 text-muted'>{{this.tag}}</h6>
+                <div class='card-description'>
+                  <p class='card-text'>{{this.description}}</p>
+                </div>
+                <p class='card-text'>{{this.date}}</p>
+                <p class='card-text'>Created by: {{this.author}}</p>
+                <a href='snippets/{{this.id}}' class='card-link'>View more</a>
+              </div>
             </div>
           </div>
-        </div>
-      {{/each}}
+        {{/each}}
+      {{else}}
+        <tr colspan='2'>
+          <td class='text-center'>No snippets to display.</td>
+        </tr>
+      {{/if}}
 
     </div>
   </div>

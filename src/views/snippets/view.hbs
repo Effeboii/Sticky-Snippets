@@ -1,13 +1,13 @@
 <div class="snippets">
 
   <div class="snippets-header">
-    <h2>Services</h2>
-    <p>Veritatis et dolores facere numquam et praesentium</p>
+    <h2>Specific Snippet</h2>
+    <p>You are viewing a specific snippet</p>
   </div>
 
   <div class="form-container">
 
-  <form class="row g-3" method="POST" action="/snippets/create">
+  <div class="row g-3">
     <div class="col-md-6">
       <label for="name" class="form-label">Name</label>
       <input
@@ -17,12 +17,13 @@
         value={{viewData.snippet.name}}
         placeholder="The name of the snippet..."
         minlength="1"
+        readonly
         required
       >
     </div>
 
     <div class="col-md-6">
-      <label for="description" class="form-label">Write a short description</label>
+      <label for="description" class="form-label">Description</label>
       <input
         class="form-control"
         type="text"
@@ -30,66 +31,46 @@
         value={{viewData.snippet.description}}
         placeholder="What's your snippet about?"
         minlength="1"
+        readonly
         required
       >
     </div>
 
     <div class="col-12">
-      <label for="inputAddress" class="form-label">Write your snippet</label>
+      <label for="inputAddress" class="form-label">Snippet</label>
       <textarea
         class="form-control"
         name="code"
         placeholder="Write your snippet here..."
         rows="20"
+        readonly
         required>{{viewData.snippet.code}}</textarea>
     </div>
 
     <p>Tag: {{viewData.snippet.tag}}</p>
 
-    <div class="form-check ps-2 mt-0">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio1" value="txt" required>
-        <label class="form-check-label" for="inlineRadio1">.txt</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="html">
-        <label class="form-check-label" for="inlineRadio2">.html</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="css">
-        <label class="form-check-label" for="inlineRadio2">.css</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="js">
-        <label class="form-check-label" for="inlineRadio2">.js</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="php">
-        <label class="form-check-label" for="inlineRadio2">.php</label>
-      </div>
-
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="tag" id="inlineRadio2" value="c#">
-        <label class="form-check-label" for="inlineRadio2">.cs</label>
-      </div>
-    </div>
-
     <div class="row mt-3">
       <div class="col-auto ps-2">
-        <button type="submit" class="btn btn-primary">Edit snippet</button>
+        <a
+          class='btn btn-primary'
+          href='edit/{{viewData.snippet._id}}'
+        >
+          Edit
+        </a>
       </div>
 
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Delete snippet</button>
+      <div class="col-auto ps-0">
+        <a
+          class='btn btn-danger'
+          href='delete/{{viewData.snippet._id}}'
+        >
+          Delete
+        </a>
       </div>
 
     </div>
 
-  </form>
+  </div>
 
 </div>
 

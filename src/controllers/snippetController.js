@@ -134,7 +134,30 @@ snippetController.delete = async (req, res) => {
       message: 'Snippet successfully deleted!',
     };
 
-    res.render('snippets');
+    res.redirect('/snippets');
+  } catch (error) {
+    res.status(500).json({
+      status: '500: Internal Server Error',
+      msg: 'Sorry, something went wrong.',
+      error: 'Error: ' + error,
+    });
+  }
+};
+
+/**
+ * Displays the start page
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+snippetController.update = async (req, res) => {
+  try {
+    req.session.flash = {
+      type: 'success',
+      message: 'Snippet successfully deleted!',
+    };
+
+    res.redirect('/snippets');
   } catch (error) {
     res.status(500).json({
       status: '500: Internal Server Error',

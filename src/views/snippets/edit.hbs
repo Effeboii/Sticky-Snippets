@@ -1,0 +1,122 @@
+<div class='snippets'>
+
+  <div class='snippets-header'>
+    <h2>Services</h2>
+    <p>Veritatis et dolores facere numquam et praesentium</p>
+  </div>
+
+  <div class='form-container'>
+
+    <form class='row g-3' method='POST' action='/snippets/create'>
+      <div class='col-md-6'>
+        <label for='name' class='form-label'>Name</label>
+        <input
+          class='form-control'
+          type='text'
+          name='name'
+          placeholder='The name of the snippet...'
+          minlength='1'
+          required
+        />
+      </div>
+
+      <div class='col-md-6'>
+        <label for='description' class='form-label'>Write a short description</label>
+        <input
+          class='form-control'
+          type='text'
+          name='description'
+          placeholder="What's your snippet about?"
+          minlength='1'
+          required
+        />
+      </div>
+
+      <div class='col-12'>
+        <label for='inputAddress' class='form-label'>Write your snippet</label>
+        <textarea
+          class='form-control'
+          name='code'
+          placeholder='Write your snippet here...'
+          rows='20'
+          required
+        ></textarea>
+      </div>
+
+      <div class='form-check ps-2'>
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio1'
+            value='txt'
+            required
+          />
+          <label class='form-check-label' for='inlineRadio1'>.txt</label>
+        </div>
+
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio2'
+            value='html'
+          />
+          <label class='form-check-label' for='inlineRadio2'>.html</label>
+        </div>
+
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio2'
+            value='css'
+          />
+          <label class='form-check-label' for='inlineRadio2'>.css</label>
+        </div>
+
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio2'
+            value='js'
+          />
+          <label class='form-check-label' for='inlineRadio2'>.js</label>
+        </div>
+
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio2'
+            value='php'
+          />
+          <label class='form-check-label' for='inlineRadio2'>.php</label>
+        </div>
+
+        <div class='form-check form-check-inline'>
+          <input
+            class='form-check-input'
+            type='radio'
+            name='tag'
+            id='inlineRadio2'
+            value='c#'
+          />
+          <label class='form-check-label' for='inlineRadio2'>.cs</label>
+        </div>
+      </div>
+
+      <div class='col-12 ps-2'>
+        <button type='submit' class='btn btn-primary'>Create snippet</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
