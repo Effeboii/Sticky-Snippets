@@ -28,7 +28,7 @@ DB_CONNECTION_STRING = "YOUR_MONGODB_CONNECTION_STRING_HERE"
 npm start
 
 # Navigate to localhost
-[localhost:3000](http://localhost:3000)
+http://localhost:3000
 ```
 
 That's all you need to know to start! 🎉
