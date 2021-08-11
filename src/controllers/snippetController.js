@@ -10,6 +10,8 @@
 const snippetController = {};
 const Snippet = require('../models/snippetModel');
 const User = require('../models/userModel');
+
+const createError = require('http-errors');
 const moment = require('moment');
 
 /**
@@ -34,11 +36,7 @@ snippetController.read = async (req, res) => {
 
     res.render('snippets/index', { viewData });
   } catch (error) {
-    res.status(500).json({
-      status: '500: Internal Server Error',
-      msg: 'Sorry, something went wrong.',
-      error: 'Error: ' + error,
-    });
+    next(createError(500));
   }
 };
 

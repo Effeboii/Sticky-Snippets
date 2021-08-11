@@ -15,7 +15,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const createError = require('http-errors');
 const mongoose = require('./src/config/mongoose');
-const moment = require('moment');
+// const moment = require('moment');
 require('dotenv').config();
 
 // Create express application
