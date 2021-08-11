@@ -1,6 +1,7 @@
 # Sticky Snippets
 
-A CRUD-application that handles code snippets.
+A CRUD-application that handles code snippets.<br/>
+This application was developed as part of the course 1dv023 at Linnaeus University.
 
 ## ⚡️ Quick start
 
