@@ -1,29 +1,50 @@
-<div class="header">
-  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+<div class='header'>
+  <div
+    class='container-fluid container-xl d-flex align-items-center justify-content-between'
+  >
 
-    <a href="/" class="logo d-flex align-items-center">
-      <img src="/images/logo.png" alt="">
-      <span>StickySnippets</span>
-    </a>
+    {{#if isLoggedIn}}
+      <a href='/snippets' class='logo d-flex align-items-center'>
+        <img src='/images/logo.png' alt='' />
+        <span>StickySnippets</span>
+      </a>
+    {{else}}
+      <a href='/' class='logo d-flex align-items-center'>
+        <img src='/images/logo.png' alt='' />
+        <span>StickySnippets</span>
+      </a>
+    {{/if}}
 
-    <nav class="navbar">
+    <nav class='navbar'>
       <ul>
         {{#if isLoggedIn}}
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/snippets">Snippets</a>
+          <li class='nav-item'>
+            <a
+              class='nav-link'
+              aria-current='page'
+              href='/snippets'
+            >Snippets</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/snippets/new">Create</a>
+          <li class='nav-item'>
+            <a
+              class='nav-link'
+              aria-current='page'
+              href='/snippets/new'
+            >Create</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/users/logout">Logout</a>
+          <li class='nav-item'>
+            <a
+              class='nav-link'
+              aria-current='page'
+              href='/users/logout'
+            >Logout</a>
           </li>
         {{/if}}
       </ul>
-      
-      <i class="bi bi-list mobile-nav-toggle"></i>
+
+      <i class='bi bi-list mobile-nav-toggle'></i>
     </nav>
 
   </div>
